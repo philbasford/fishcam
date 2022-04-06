@@ -1,0 +1,45 @@
+[flake8]
+max-line-length = 120
+exclude = .git,__pycache__,tests/*,venv/*,scripts/*,sql/*
+
+# common ignores
+ignore =
+    # first line should be imperative mood (D401)
+    D401
+    # bare except sometimes required (E722, B901, B902)
+    E722
+    B901
+    B902
+    # docstring is ok on new line (D212)
+    D212
+    # period not essential to end line (D400, D415)
+    D400
+    D415
+    # line breaks SHOULD be before (W503) see https://www.flake8rules.com/rules/W503.html
+    W503
+
+# specific ignores
+per-file-ignores =
+
+    # ignores for data science
+    datascience/*:
+        D100
+        D102
+        D103
+        D200
+        D403
+        E302
+        E402
+        E501
+        E800
+        F401
+        T001
+        W291
+        W504
+
+    # ignores for SQA models
+    src/models/*:
+        # some models use id as a field which hides builtin (A003)
+        A003
+        # classnames should use CapWords convention - but SQA classes don't fit (N801)
+        N801

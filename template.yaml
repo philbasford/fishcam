@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  fish-lambda
+
+  Sample SAM Template for fish-lambda
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  FishCamFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: fish_cam/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      AutoPublishAlias: dev 
+
+
+Outputs:
+  FishCamFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt FishCamFunction.Arn
+  FishCamFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt FishCamFunctionRole.Arn
